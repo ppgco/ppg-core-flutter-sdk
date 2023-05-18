@@ -3,8 +3,8 @@ import PpgCoreSDK
 import UserNotifications
 
 public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycleDelegate {
-  // TODO: read plist?
-  var ppgCoreClient: PpgCoreClient = PpgCoreClient(endpoint: "https://ppg-core.master1.qappg.co/v1")
+
+  var ppgCoreClient: PpgCoreClient = PpgCoreClient()
 
   enum MethodIdentifier: String {
     case initialize

@@ -5,7 +5,8 @@ class CommonChannel {
   static const Duration _channelTimeout = Duration(seconds: 15);
   static const MethodChannel _channel = MethodChannel(_channelName);
 
-  static void setMethodCallHandler(Future<dynamic> Function(MethodCall call) handler) {
+  static void setMethodCallHandler(
+      Future<dynamic> Function(MethodCall call) handler) {
     _channel.setMethodCallHandler(handler);
   }
 
@@ -14,7 +15,9 @@ class CommonChannel {
     required ChannelMethod method,
     dynamic arguments,
   }) {
-    return _channel.invokeMethod<T>(method.name, arguments).timeout(_channelTimeout);
+    return _channel
+        .invokeMethod<T>(method.name, arguments)
+        .timeout(_channelTimeout);
   }
 }
 
@@ -37,7 +40,7 @@ extension ChannelMethodExtensions on ChannelMethod {
       case ChannelMethod.registerForNotifications:
         return 'registerForNotifications';
       case ChannelMethod.unregisterFromNotifications:
-        return 'unregisterFromNotifications';        
+        return 'unregisterFromNotifications';
       case ChannelMethod.getToken:
         return 'getToken';
       case ChannelMethod.onLaunch:

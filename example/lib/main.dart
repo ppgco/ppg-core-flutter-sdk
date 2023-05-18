@@ -28,13 +28,11 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initializePpgCore() async {
     // TBD Logic
-    _ppgCorePlugin.initialize(
-      onToken: (tokenJSON) {
-        // Upload this token to your server backend - you need this to use our API to send push notifications to this user
-        // This is a JSON formatted string contains all necessery informations to our backend.
-        log(tokenJSON);
-      }
-    );
+    _ppgCorePlugin.initialize(onToken: (tokenJSON) {
+      // Upload this token to your server backend - you need this to use our API to send push notifications to this user
+      // This is a JSON formatted string contains all necessery informations to our backend.
+      log(tokenJSON);
+    });
 
     if (!mounted) return;
 
@@ -42,7 +40,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-    Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
         '/': (context) => const HomeScreen(),
@@ -53,7 +51,6 @@ class _MyAppState extends State<MyApp> {
 }
 
 class HomeScreen extends StatelessWidget {
-
   const HomeScreen({super.key});
 
   @override
@@ -64,24 +61,21 @@ class HomeScreen extends StatelessWidget {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: ElevatedButton(
-            child: const Text("Go to detail screen"),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const DetailScreen(),
-                ),
-              );
-            }
-          )
-        ),
+            child: ElevatedButton(
+                child: const Text("Go to detail screen"),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const DetailScreen(),
+                    ),
+                  );
+                })),
       ),
     );
   }
 }
 
 class DetailScreen extends StatelessWidget {
-
   const DetailScreen({super.key});
 
   @override
@@ -91,9 +85,7 @@ class DetailScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: const Center(
-          child: Text("Detail screen")
-        ),
+        body: const Center(child: Text("Detail screen")),
       ),
     );
   }

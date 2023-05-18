@@ -1,5 +1,5 @@
 import 'dart:async';
- 
+
 import 'package:ppg_core/common_channel.dart';
 import 'package:flutter/services.dart';
 
@@ -12,7 +12,6 @@ enum RegisterStatus {
 }
 
 class PpgCore {
-
   String? lastSubscriptionJSON;
 
   MessageHandler _onMessage = (_) {};
@@ -40,8 +39,9 @@ class PpgCore {
   /// Registers for iOS push notifications | android notifications also
   Future<RegisterStatus> registerForNotifications() async {
     String result = await CommonChannel.invokeMethod<String>(
-      method: ChannelMethod.registerForNotifications,
-    ) ?? "undefined";
+          method: ChannelMethod.registerForNotifications,
+        ) ??
+        "undefined";
 
     if (result == "granted") {
       return RegisterStatus.granted;
@@ -60,7 +60,7 @@ class PpgCore {
   // From native to dart
   Future<dynamic> _handleChannelMethodCallback(MethodCall call) async {
     String method = call.method;
-    
+
     dynamic arguments = call.arguments;
     if (method == ChannelMethod.onMessage.name) {
       return _onMessage(arguments ?? "{}"); //.cast<String, dynamic>()

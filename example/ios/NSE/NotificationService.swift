@@ -9,7 +9,5 @@ import UserNotifications
 import PpgCoreSDK
 
 class NotificationService: PpgCoreNotificationServiceExtension {
-  override func getEndpoint() -> String {
-    return "https://ppg-core.master1.qappg.co/v1"
-  }
+
 }

@@ -29,9 +29,6 @@ class _MyAppState extends State<MyApp> {
   Future<void> initializePpgCore() async {
     // TBD Logic
     _ppgCorePlugin.initialize(
-      onMessage: (message) {
-        log(message.toString());
-      },
       onToken: (tokenJSON) {
         // Upload this token to your server backend - you need this to use our API to send push notifications to this user
         // This is a JSON formatted string contains all necessery informations to our backend.

@@ -64,8 +64,7 @@ class PpgCore {
     
     dynamic arguments = call.arguments;
     if (method == ChannelMethod.onMessage.name) {
-      log(arguments);
-      return _onMessage(arguments); //.cast<String, dynamic>()
+      return _onMessage(arguments ?? "{}"); //.cast<String, dynamic>()
     } else if (method == ChannelMethod.onToken.name) {
       lastSubscriptionJSON = arguments;
       return _onToken(lastSubscriptionJSON ?? "{}");

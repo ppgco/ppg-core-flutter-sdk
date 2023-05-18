@@ -3,12 +3,12 @@ PODS:
   - ppg_core (0.0.1):
     - Flutter
     - PpgCoreSDK
-  - PpgCoreSDK (0.0.7)
+  - PpgCoreSDK (0.0.8)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - ppg_core (from `.symlinks/plugins/ppg_core/ios`)
-  - PpgCoreSDK (~> 0.0.7)
+  - PpgCoreSDK (~> 0.0.8)
 
 SPEC REPOS:
   trunk:
@@ -23,8 +23,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   ppg_core: f294af98ca038ecd3e054c429cc7a49b944174d5
-  PpgCoreSDK: c9919e31bb5f4b62c26edbd2ec29b120b9c810da
+  PpgCoreSDK: 26c4d8f23fe7b8ab9e7476f74299c69c44e12e9d
 
-PODFILE CHECKSUM: b247f7adbf7291531ba1859c0e00bc317cb24003
+PODFILE CHECKSUM: 7b120daf2633dbc0b656910d0c56ac250e6d4b18
 
 COCOAPODS: 1.12.1

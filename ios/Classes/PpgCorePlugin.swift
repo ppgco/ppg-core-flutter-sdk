@@ -8,7 +8,6 @@ public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycle
 
   enum MethodIdentifier: String {
     case initialize
-    case onLaunch
     case registerForNotifications
     case onMessage
     case onToken

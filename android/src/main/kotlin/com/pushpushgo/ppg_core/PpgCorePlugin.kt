@@ -17,7 +17,7 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "ppg_core")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.pushpushgo/core")
     channel.setMethodCallHandler(this)
   }
 

@@ -18,6 +18,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.app
 import com.google.firebase.ktx.initialize
+import com.pushpushgo.core_sdk.sdk.utils.PermissionState
+import com.pushpushgo.core_sdk.sdk.utils.PermissionsUtils
 import io.flutter.plugin.common.PluginRegistry
 
 /** PpgCorePlugin */
@@ -25,7 +27,6 @@ import io.flutter.plugin.common.PluginRegistry
 enum class MethodIdentifier {
   initialize,
   registerForNotifications,
-  onMessage,
   onToken;
   companion object {
     fun create(name: String): MethodIdentifier {
@@ -50,7 +51,6 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "com.pushpushgo/core")
     channel.setMethodCallHandler(this)
     context = flutterPluginBinding.applicationContext
-//    FirebaseApp.initializeApp(context)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
@@ -61,8 +61,23 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
         Log.d("Initialize", "Initialize")
       }
       MethodIdentifier.registerForNotifications -> {
-        ppgCoreClient.getSubscription { Log.d("getSubscription", "token: ${it.toJSON()}") }
-        result.success("")
+        when (PermissionsUtils.check(activity)) {
+          PermissionState.ALLOWED -> {
+            ppgCoreClient.getSubscription {
+              channel.invokeMethod(MethodIdentifier.onToken.toString(), it.toJSON())
+            }
+            result.success("granted")
+          }
+          PermissionState.ASK -> {
+            result.success("prompt")
+          }
+          PermissionState.DENIED -> {
+            result.success("denied")
+          }
+          PermissionState.RATIONALE -> {
+            result.success("prompt")
+          }
+        }
       }
       else -> result.notImplemented()
     }

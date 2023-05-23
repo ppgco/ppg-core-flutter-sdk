@@ -9,6 +9,7 @@ typedef SubscriptionHandler = Function(String serializedJSON);
 enum RegisterStatus {
   granted,
   denied,
+  prompt,
 }
 
 class PpgCore {

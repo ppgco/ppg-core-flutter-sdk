@@ -46,5 +46,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.7'
+    implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.10'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
+    implementation platform('com.google.firebase:firebase-bom:31.2.3')
 }

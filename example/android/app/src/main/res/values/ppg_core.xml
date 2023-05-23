@@ -3,7 +3,7 @@
     <string name="default_ppg_core_endpoint">https://ppg-core.master1.qappg.co/v1</string>
     <string name="default_fcm_project_id">ppg-core-test-v1</string>
 <!--    <string name="default_hms_app_id">1234567890</string>-->
-<!--    <string name="default_channel_id">ppg_core_default3</string>-->
+    <string name="default_channel_id">ppg_core_default3</string>
 <!--    <string name="default_channel_name">PPG Core Default Channel</string>-->
 <!--    <bool name="default_channel_badge_enabled">true</bool>-->
 <!--    <bool name="default_channel_vibration_enabled">true</bool>-->

@@ -3,23 +3,20 @@ package com.pushpushgo.ppg_core
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.util.Log
 import androidx.annotation.NonNull
+import com.google.firebase.FirebaseApp
 import com.pushpushgo.core_sdk.sdk.client.PpgCoreClient
+import com.pushpushgo.core_sdk.sdk.utils.PermissionState
+import com.pushpushgo.core_sdk.sdk.utils.PermissionsUtils
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.embedding.engine.plugins.activity.ActivityAware
-import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseApp
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.app
-import com.google.firebase.ktx.initialize
-import com.pushpushgo.core_sdk.sdk.utils.PermissionState
-import com.pushpushgo.core_sdk.sdk.utils.PermissionsUtils
 import io.flutter.plugin.common.PluginRegistry
 
 /** PpgCorePlugin */
@@ -37,7 +34,7 @@ enum class MethodIdentifier {
 
 }
 
-class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.NewIntentListener {
+class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.NewIntentListener, PluginRegistry.RequestPermissionsResultListener {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -69,6 +66,7 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
             result.success("granted")
           }
           PermissionState.ASK -> {
+            PermissionsUtils.requestPermissions(activity)
             result.success("prompt")
           }
           PermissionState.DENIED -> {
@@ -83,15 +81,6 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
     }
 
   }
-
-  private fun initialize() {
-
-  }
-
-  private fun register() {
-
-  }
-
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }
@@ -117,5 +106,23 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   override fun onNewIntent(intent: Intent): Boolean {
     ppgCoreClient.onReceive(context, intent)
     return true
+  }
+
+  override fun onRequestPermissionsResult(
+    requestCode: Int,
+    permissions: Array<out String>,
+    grantResults: IntArray
+  ): Boolean {
+    return when (requestCode) {
+      PermissionsUtils.PERMISSION_REQUEST_CODE -> {
+        if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+          ppgCoreClient.getSubscription {
+            channel.invokeMethod(MethodIdentifier.onToken.toString(), it.toJSON())
+          }
+        }
+        return true
+      }
+      else -> false
+    }
   }
 }

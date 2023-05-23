@@ -60,6 +60,7 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'com.pushpushgo.ppg_core_example'
 }
 
 flutter {

@@ -7,6 +7,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import com.pushpushgo.core_sdk.sdk.client.PpgCoreClient
 
 /** PpgCorePlugin */
 class PpgCorePlugin: FlutterPlugin, MethodCallHandler {

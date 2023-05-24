@@ -77,5 +77,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
     implementation platform('com.google.firebase:firebase-bom:31.2.3')
-    implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.11'
+    implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.12'
 }

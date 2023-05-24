@@ -87,6 +87,7 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
 
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     binding.addRequestPermissionsResultListener(this)
+    binding.addOnNewIntentListener(this)
     activity = binding.activity
     ppgCoreClient = PpgCoreClient(activity)
   }

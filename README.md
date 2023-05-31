@@ -217,7 +217,7 @@ Depends what provider you want to use please choose one of available options
 </service>
 ```
 
-### 3.3.3 Activities (on application level)
+### 3.3.3 Activities (on main activity level)
 ```xml
     <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
 

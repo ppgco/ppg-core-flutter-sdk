@@ -165,6 +165,8 @@ allprojects {
     repositories {
         // jitpack
         maven { url 'https://jitpack.io' }
+        // only when use hms
+        maven { url 'https://developer.huawei.com/repo/' }
     }
 }
 ```

@@ -344,5 +344,50 @@ apply plugin: 'com.huawei.agconnect'
 $ flutter run
 ```
 
+
+# Sending notifications
+
+## 1. iOS
+### 1.1. Prepare certificates
+ 1. Go to [Apple Developer Portal - Identities](https://developer.apple.com/account/resources/identifiers/list) and go to **Identifiers** section
+ 2. Select from list your appBundleId like `com.example.your_project_name`
+ 3. Look for PushNotifications and click "**Configure**" button
+ 4. Select your __Certificate Singing Request__ file
+ 5. Download Certificates and open in KeyChain Access (double click in macos)
+ 6. Find this certificate in list select then in context menu (right click) select export and export to .p12 format file with password.
+### 2. Prepare configuration
+ 1. Wrap exported certficates with Base64 with command
+ ```bash
+ $ cat Certificate.p12 | base64
+ ```
+ 2. Prepare JSON with provider configuration
+ ```json
+{
+    "type": "apns_cert",
+    "payload": {
+    "p12": "encoded base64 Certficiate.p12",
+    "passphrase": "PASSWORD",
+    "production": false,
+    "appBundleId": "com.example.your_product_name",
+}
+ ```
+
+## 2. Android
+  1. Go to [Firebase Developer Console](https://console.firebase.google.com/)
+  2. Select your project and go to **Settings**
+  3. On **Service Accounts** section click **Generate Credentials**
+  4. Prepare JSON with provider configuration
+ ```json
+{
+    "type": "fcm_v1",
+    "payload": {
+       // Content of service account file
+    }
+}
+ ```
+
+## 3. Go to example [SenderSDK](https://github.com/ppgco/ppg-core-js-sdk/tree/main/examples/sender) docs 
+ In examples please use prepared "providerConfig" and token returned from SDK to send notifications.
+
 # Support & production run
 If you need production credentials or just help with integration please visit us in [discord](https://discord.gg/NVpUWvreZa) or just mail to [support@pushpushgo.com](mailto:support@pushpushgo.com)

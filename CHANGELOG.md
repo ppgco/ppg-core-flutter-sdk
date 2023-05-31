@@ -10,3 +10,6 @@ Now we use:
  - 0.0.30 for Android
  - 0.0.8 for iOS.
 Initial release of library
+
+## 0.0.4
+Initial release of library with Readme instructions

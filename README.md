@@ -157,8 +157,33 @@ $ flutter run
 ```
 
 # 3. Android Support
-## 3.1 Place your `google-services.json` file in `android/app` directory
-## 3.2 Add to `android/app/src/main/res/values/` file names `ppgcore.xml` with content
+
+## 3.1 Add to your root build.gradle jitpack if you don't have already
+```groovy
+// build.gradle (root) or settings.gradle (dependencyResolutionManagement)
+allprojects {
+    repositories {
+        // jitpack
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+### 3.1.1 Add classpath dependencies in root build.gradle file:
+
+If you have already configured fcm - omit this step
+
+#### 3.1.1.1 For FCM:
+```
+classpath 'com.google.gms:google-services:4.3.15'
+```
+#### 3.1.1.2 For HMS:
+```
+classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+```
+
+## 3.2 Place your `google-services.json` file in `android/app` directory
+## 3.3 Add to `android/app/src/main/res/values/` file names `ppgcore.xml` with content
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -178,22 +203,22 @@ $ flutter run
     <string name="default_channel_sound">magic_tone</string>
 </resources>
 ```
-## 3.3 Add to your `AndroidManifest.xml`
+## 3.4 Add to your `AndroidManifest.xml`
 
 This file is placed in `android/app/src/main/`
 
-### 3.3.1 Permissions (on root level)
+### 3.4.1 Permissions (on root level)
 ```xml
 <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 <!-- If you want to support vibration -->
 <uses-permission android:name="android.permission.VIBRATE"/>
 ```
 
-### 3.3.2 Service (on application level)
+### 3.4.2 Service (on application level)
 
 Depends what provider you want to use please choose one of available options
 
-#### 3.3.2.1 For FCM
+#### 3.4.2.1 For FCM
 
 ```xml
 <service
@@ -205,11 +230,20 @@ Depends what provider you want to use please choose one of available options
 </service>
 ```
 
-#### 3.3.2.2 For HMS
+and create file called `FirebaseMessagingService` with content:
+
+```kotlin
+import com.pushpushgo.core_sdk.sdk.fcm.FcmMessagingService  
+  
+class FirebaseMessagingService : FcmMessagingService() {}
+
+```
+
+#### 3.4.2.2 For HMS
 
 ```xml
 <service
-  android:name=".service.MyHMSMessagingService"
+  android:name=".service.MyHmsMessagingService"
   android:exported="false">
   <intent-filter>
     <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
@@ -217,7 +251,16 @@ Depends what provider you want to use please choose one of available options
 </service>
 ```
 
-### 3.3.3 Activities (on main activity level)
+and create file called `MyHmsMessagingService` with content:
+
+```kotlin
+
+import com.pushpushgo.core_sdk.sdk.hms.HmsMessagingService  
+  
+class MyHmsMessagingService : HmsMessagingService() {}
+```
+
+### 3.4.3 Activities (on main activity level)
 ```xml
     <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
 
@@ -235,6 +278,63 @@ Depends what provider you want to use please choose one of available options
         <action android:name="PUSH_CLICK" />
         <action android:name="PUSH_CLOSE" />
     </intent-filter>
+```
+## 3.4 Modify build.gradle and local.properties:
+
+### 3.4.1 Add to `android/app/local.properties`:
+```groovy
+flutter.minSdkVersion=21
+```
+
+### 3.4.2 Add to `android/app/build.gradle`:
+```groovy
+def flutterMinSdkVersion = localProperties.getProperty('flutter.minSdkVersion')
+if (flutterMinSdkVersion == null) {
+    flutterMinSdkVersion = 21
+}
+```
+
+### 3.4.3 Modify default config
+Add minSdkVersion in defaultConfig for android:
+```groovy
+    defaultConfig {
+        minSdkVersion flutterMinSdkVersion
+    }
+```
+
+### 3.4.5 Add dependencies (app level) and apply plugin
+
+#### 3.4.5.1 For FCM
+```groovy
+// build.gradle (:app)
+dependencies {  
+  ...  
+  implementation "com.github.ppgco:ppg-core-android-sdk:0.0.30"
+  implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'  
+  implementation platform('com.google.firebase:firebase-bom:31.2.3')  
+}
+```
+
+On top add **apply plugin**
+```groovy
+apply plugin: 'com.google.gms.google-services'
+```
+
+#### 3.4.5.2 For HMS
+
+```groovy
+dependencies {
+  ...
+  implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.30'
+  implementation 'com.huawei.agconnect:agconnect-core:1.7.2.300'  
+  implementation 'com.huawei.hms:push:6.7.0.300'   
+}
+```
+
+On top add **apply plugin**
+Paste this below `com.android.library`
+```groovy
+apply plugin: 'com.huawei.agconnect'
 ```
 
 ## 3.4 Try to run app and fetch Push Notifications token in debug console

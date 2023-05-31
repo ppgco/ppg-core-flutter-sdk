@@ -1,6 +1,6 @@
 name: ppg_core
 description: PushPushGo Core SDK for Flutter (Dart)
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/ppgco/ppg-core-flutter-sdk
 
 environment:

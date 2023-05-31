@@ -4,4 +4,9 @@ WIP Release - iOS Support
 ## 0.0.2
 WIP Release - Before Android Support
 
-
+## 0.0.3
+WIP - Update library version of Android and iOS
+Now we use:
+ - 0.0.30 for Android
+ - 0.0.8 for iOS.
+Initial release of library

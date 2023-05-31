@@ -145,6 +145,11 @@ target 'NSE' do
   pod 'PpgCoreSDK', '~> 0.0.8'
 end
 ```
+7. In `Info.plist` add folowing to enable deep linking in flutter
+```xml
+<key>FlutterDeepLinkingEnabled</key>
+<true/>
+```
 
 ## 2.3 Try to run app and fetch Push Notifications token in debug console
 ```bash
@@ -173,8 +178,66 @@ $ flutter run
     <string name="default_channel_sound">magic_tone</string>
 </resources>
 ```
+## 3.3 Add to your `AndroidManifest.xml`
 
-## 3.3 Try to run app and fetch Push Notifications token in debug console
+This file is placed in `android/app/src/main/`
+
+### 3.3.1 Permissions (on root level)
+```xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+<!-- If you want to support vibration -->
+<uses-permission android:name="android.permission.VIBRATE"/>
+```
+
+### 3.3.2 Service (on application level)
+
+Depends what provider you want to use please choose one of available options
+
+#### 3.3.2.1 For FCM
+
+```xml
+<service
+    android:name=".FirebaseMessagingService"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+    </intent-filter>
+</service>
+```
+
+#### 3.3.2.2 For HMS
+
+```xml
+<service
+  android:name=".service.MyHMSMessagingService"
+  android:exported="false">
+  <intent-filter>
+    <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+  </intent-filter>
+</service>
+```
+
+### 3.3.3 Activities (on application level)
+```xml
+    <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
+
+    <intent-filter  android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:host="com.example.packagename"
+            android:scheme="app" />
+        <data android:scheme="https" />
+        <data android:scheme="http" />
+    </intent-filter>
+
+    <intent-filter>
+        <action android:name="PUSH_CLICK" />
+        <action android:name="PUSH_CLOSE" />
+    </intent-filter>
+```
+
+## 3.4 Try to run app and fetch Push Notifications token in debug console
 ```bash
 $ flutter run
 ```

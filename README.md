@@ -69,16 +69,10 @@ $ flutter doctor
 
 If pass without any exceptions you are ready to go through next steps
 
-TIP: To create new flutter app please use command:
-```bash
-flutter create --org com.example --platforms="ios,android" -a kotlin -i swift demo_app
-```
-
 # 1. Add SDK to your existing application
-## 1.1 Modify your `pubspec.yaml` file
-```yaml
-Add to `dependencies` section:
-  ppg_core: ^0.0.3
+## 1.1 Install flutter package
+```bash
+$ flutter pub add ppg_core
 ```
 
 ## 1.2 Add code to your `main.dart` file

@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'ppg_core'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'PushPushGo Core SDK'
   s.description      = <<-DESC
   PushPushGo Core SDK for Flutter (Dart)
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'PpgCoreSDK'
-  s.platform = :ios, '11.0'
+  s.platform = :ios, '14.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }

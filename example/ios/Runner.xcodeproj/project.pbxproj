@@ -10,6 +10,8 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		37B8C710CF787FAFEB1F151E /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EF4E9F2A15246C00C5054A /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		462BCC5F2A38ED3C0023FDFC /* PpgCore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462BCC5E2A38ED3C0023FDFC /* PpgCore.plist */; };
+		462BCC602A38ED3C0023FDFC /* PpgCore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 462BCC5E2A38ED3C0023FDFC /* PpgCore.plist */; };
 		4641D1B02A161CC800F39972 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4641D1AF2A161CC800F39972 /* NotificationService.swift */; };
 		4641D1B42A161CC800F39972 /* NSE.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4641D1AD2A161CC800F39972 /* NSE.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4641D1C52A1622EA00F39972 /* Pods_NSE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4641D1B92A161D2400F39972 /* Pods_NSE.framework */; };
@@ -71,6 +73,7 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		46246C2D2A0BE14E00DFF9AA /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		462BCC5E2A38ED3C0023FDFC /* PpgCore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PpgCore.plist; sourceTree = "<group>"; };
 		4641D1AD2A161CC800F39972 /* NSE.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NSE.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4641D1AF2A161CC800F39972 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		4641D1B12A161CC800F39972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				462BCC5E2A38ED3C0023FDFC /* PpgCore.plist */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -281,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462BCC602A38ED3C0023FDFC /* PpgCore.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462BCC5F2A38ED3C0023FDFC /* PpgCore.plist in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,

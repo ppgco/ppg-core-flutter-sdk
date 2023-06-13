@@ -13,3 +13,8 @@ Initial release of library
 
 ## 0.0.4
 Initial release of library with Readme instructions
+
+## 0.0.5
+Now we use:
+ - 0.0.31 for Android
+ - 0.0.9 for iOS.

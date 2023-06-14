@@ -112,7 +112,7 @@ import 'package:ppg_core/ppg_core.dart';
 platform :ios, '14.0'
 ```
 ## 2.2 Open XCode with `ios/` directory
-```bash
+```sh
 $ xed ios/
 ```
 ### 2.2.1 Enable Push Notification Capabilities in Project Target
@@ -154,6 +154,43 @@ end
 ## 2.3 Try to run app and fetch Push Notifications token in debug console
 ```bash
 $ flutter run
+```
+
+# 2.4 (Optional) If you want to override endpoint , or create new notification channels please create `PpgCore.plist` file with content
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PpgCoreSDKEndpoint</key>
+	<string>https://ppg-core.master1.qappg.co/v1</string>
+	<key>PpgCoreChannels</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>testing_channel</string>
+			<key>sound</key>
+			<string>Submarine.aiff</string>
+			<key>actions</key>
+			<array>
+				<string>Reply</string>
+			</array>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>testing_channel_nowy</string>
+			<key>sound</key>
+			<string>sub.caf</string>
+			<key>actions</key>
+			<array>
+				<string>Open</string>
+				<string>Show more</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
 ```
 
 # 3. Android Support

@@ -56,6 +56,7 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
         FirebaseApp.initializeApp(context.applicationContext)
         ppgCoreClient = PpgCoreClient(activity)
         Log.d("Initialize", "Initialize")
+        result.success("success")
       }
       MethodIdentifier.registerForNotifications -> {
         when (PermissionsUtils.check(activity)) {

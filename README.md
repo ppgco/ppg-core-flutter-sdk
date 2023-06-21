@@ -164,7 +164,7 @@ $ flutter run
 <plist version="1.0">
 <dict>
 	<key>PpgCoreSDKEndpoint</key>
-	<string>https://ppg-core.master1.qappg.co/v1</string>
+	<string>https://api-core.pushpushgo.com/v1</string>
 	<key>PpgCoreChannels</key>
 	<array>
 		<dict>
@@ -427,4 +427,5 @@ $ flutter run
  In examples please use prepared "providerConfig" and token returned from SDK to send notifications.
 
 # Support & production run
+All API Keys in available in this documentation allows you to test service with very low rate-limits.
 If you need production credentials or just help with integration please visit us in [discord](https://discord.gg/NVpUWvreZa) or just mail to [support@pushpushgo.com](mailto:support@pushpushgo.com)

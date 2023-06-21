@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_ppg_core_endpoint">https://ppg-core.master1.qappg.co/v1</string>
+    <string name="default_ppg_core_endpoint">https://api-core.pushpushgo.com/v1</string>
     <string name="default_fcm_project_id">test-64257</string>
 <!--    <string name="default_hms_app_id">1234567890</string>-->
 

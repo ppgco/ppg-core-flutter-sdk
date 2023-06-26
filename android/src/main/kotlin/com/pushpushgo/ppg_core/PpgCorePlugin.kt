@@ -24,7 +24,9 @@ import io.flutter.plugin.common.PluginRegistry
 enum class MethodIdentifier {
   initialize,
   registerForNotifications,
-  onToken;
+  onToken,
+  onExternalData;
+  
   companion object {
     fun create(name: String): MethodIdentifier {
       return values().find { it.name.equals(name, ignoreCase = true) }

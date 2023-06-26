@@ -26,6 +26,7 @@ enum ChannelMethod {
   registerForNotifications,
   unregisterFromNotifications,
   getToken,
+  onExternalData,
   onLaunch,
   onMessage,
   onResume,
@@ -51,6 +52,8 @@ extension ChannelMethodExtensions on ChannelMethod {
         return 'onResume';
       case ChannelMethod.onToken:
         return 'onToken';
+      case ChannelMethod.onExternalData:
+        return 'onExternalData';
       default:
         return '';
     }

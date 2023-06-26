@@ -28,11 +28,15 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initializePpgCore() async {
     // TBD Logic
-    _ppgCorePlugin.initialize(onToken: (tokenJSON) {
-      // Upload this token to your server backend - you need this to use our API to send push notifications to this user
-      // This is a JSON formatted string contains all necessery informations to our backend.
-      log(tokenJSON);
-    });
+    _ppgCorePlugin.initialize(
+      // Only for iOS - default labels if custom channels is not defined
+      iosLabels: ["Click me", "Show me"],
+      onToken: (String tokenJSON) {
+        // Upload this token to your server backend - you need this to use our API to send push notifications to this user
+        // This is a JSON formatted string contains all necessery informations to our backend.
+        log(tokenJSON);
+      }
+    );
 
     if (!mounted) return;
 

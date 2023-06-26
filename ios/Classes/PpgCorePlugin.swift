@@ -11,6 +11,7 @@ public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycle
     case registerForNotifications
     case onMessage
     case onToken
+    case onExternalData
   }
   
   private var channel: FlutterMethodChannel?
@@ -19,7 +20,7 @@ public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycle
   
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "com.pushpushgo/core", binaryMessenger: registrar.messenger())
-    let instance = PpgCorePlugin()
+    let instance: PpgCorePlugin = PpgCorePlugin()
     
     PpgCorePlugin.instance = instance
     
@@ -38,7 +39,7 @@ public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycle
     let method = MethodIdentifier(rawValue: call.method)
     switch method {
     case .initialize:
-        return onInitialize(callback: result)
+        return onInitialize(callback: result, arguments: call.arguments)
     case .registerForNotifications:
         return onRegisterForNotifications(callback: result)
     default:
@@ -46,10 +47,22 @@ public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycle
     }
   }
 
-  private func onInitialize(callback: @escaping FlutterResult) {
+  private func onExternalData(data: String) -> Void {
+    channel?.invokeMethod(MethodIdentifier.onExternalData.rawValue, arguments: data)
+  }
+
+  private func onInitialize(callback: @escaping FlutterResult, arguments: Any?) {
     // TODO: Pass dynamic data with "action labels" / define multiple channels
     UNUserNotificationCenter.current().delegate = PpgCorePlugin.instance
-    ppgCoreClient.initialize(actionLabels: ["Open", "Check more"])
+
+    var defaultActions: [String] = ["Open", "Check more"]
+    if let argsOpts: [String : Any] = arguments as? [String: Any],
+      let labelOpts: [String] = argsOpts["iosLabels"] as? [String] {
+        defaultActions = labelOpts
+    }
+    
+    ppgCoreClient.initialize(actionLabels: defaultActions, onExternalData: self.onExternalData)
+
     return callback("success")
   }
 
@@ -67,7 +80,7 @@ public class PpgCorePlugin: NSObject, FlutterPlugin, FlutterApplicationLifeCycle
 
   public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     let subscriberJSON = Subscription(token: deviceToken).toJSONString();
-    // PpgCoreLogger.info(subscriberJSON)
+    PpgCoreLogger.info(subscriberJSON)
     channel?.invokeMethod(MethodIdentifier.onToken.rawValue, arguments: subscriberJSON)
   }
 

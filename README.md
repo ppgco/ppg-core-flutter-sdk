@@ -142,7 +142,7 @@ class NotificationService: PpgCoreNotificationServiceExtension {
 target 'NSE' do
   use_frameworks!
   use_modular_headers!
-  pod 'PpgCoreSDK', '~> 0.0.10'
+  pod 'PpgCoreSDK', '~> 0.0.11'
 end
 ```
 7. In `Info.plist` add folowing to enable deep linking in flutter

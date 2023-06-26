@@ -22,3 +22,7 @@ Now we use:
 ## 0.0.6
 Now we use native SDK of Core 0.0.10 for iOS.
 Add option to pass ios default labels
+
+## 0.0.7
+Now we use native SDK of Core 0.0.11 for iOS.
+Fix duplicated delivered events

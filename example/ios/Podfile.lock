@@ -1,14 +1,14 @@
 PODS:
   - Flutter (1.0.0)
-  - ppg_core (0.0.6):
+  - ppg_core (0.0.7):
     - Flutter
     - PpgCoreSDK
-  - PpgCoreSDK (0.0.10)
+  - PpgCoreSDK (0.0.11)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - ppg_core (from `.symlinks/plugins/ppg_core/ios`)
-  - PpgCoreSDK (~> 0.0.10)
+  - PpgCoreSDK (~> 0.0.11)
 
 SPEC REPOS:
   trunk:

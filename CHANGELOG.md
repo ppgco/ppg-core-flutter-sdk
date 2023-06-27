@@ -26,3 +26,7 @@ Add option to pass ios default labels
 ## 0.0.7
 Now we use native SDK of Core 0.0.11 for iOS.
 Fix duplicated delivered events
+
+## 0.0.8
+Now we use native SDK of Core 0.0.33 for Android.
+Fix clicked events and close events on background mode.

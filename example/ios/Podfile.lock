@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - ppg_core (0.0.7):
+  - ppg_core (0.0.8):
     - Flutter
     - PpgCoreSDK
   - PpgCoreSDK (0.0.11)

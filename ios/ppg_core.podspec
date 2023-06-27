@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'ppg_core'
-  s.version          = '0.0.7'
+  s.version          = '0.0.8'
   s.summary          = 'PushPushGo Core SDK'
   s.description      = <<-DESC
   PushPushGo Core SDK for Flutter (Dart)

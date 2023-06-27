@@ -315,7 +315,6 @@ class MyHmsMessagingService : HmsMessagingService() {}
 
     <intent-filter>
         <action android:name="PUSH_CLICK" />
-        <action android:name="PUSH_CLOSE" />
     </intent-filter>
 ```
 ## 3.4 Modify build.gradle and local.properties:
@@ -348,7 +347,7 @@ Add minSdkVersion in defaultConfig for android:
 // build.gradle (:app)
 dependencies {  
   ...  
-  implementation "com.github.ppgco:ppg-core-android-sdk:0.0.31"
+  implementation "com.github.ppgco:ppg-core-android-sdk:0.0.33"
   implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'  
   implementation platform('com.google.firebase:firebase-bom:31.2.3')  
 }
@@ -364,7 +363,7 @@ apply plugin: 'com.google.gms.google-services'
 ```groovy
 dependencies {
   ...
-  implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.31'
+  implementation 'com.github.ppgco:ppg-core-android-sdk:0.0.33'
   implementation 'com.huawei.agconnect:agconnect-core:1.7.2.300'  
   implementation 'com.huawei.hms:push:6.7.0.300'   
 }

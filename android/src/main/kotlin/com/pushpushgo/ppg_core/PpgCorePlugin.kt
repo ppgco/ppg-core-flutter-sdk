@@ -33,7 +33,6 @@ enum class MethodIdentifier {
         ?: throw IllegalArgumentException("Invalid process state: $name")
     }
   }
-
 }
 
 class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.NewIntentListener, PluginRegistry.RequestPermissionsResultListener {
@@ -91,8 +90,17 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     binding.addRequestPermissionsResultListener(this)
     binding.addOnNewIntentListener(this)
+
     activity = binding.activity
     ppgCoreClient = PpgCoreClient(activity)
+
+    if (activity.intent != null && activity.intent.extras != null) {
+      if (activity.intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
+        !== Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
+      ) {
+        onNewIntent(activity.intent)
+      }
+    }
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
@@ -100,6 +108,7 @@ class PpgCorePlugin: FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegi
   }
 
   override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+    binding.addOnNewIntentListener(this)
     activity = binding.activity
     ppgCoreClient = PpgCoreClient(activity)
   }

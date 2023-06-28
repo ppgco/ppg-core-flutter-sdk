@@ -5,14 +5,14 @@
 Pod::Spec.new do |s|
   s.name             = 'ppg_core'
   s.version          = '0.0.8'
-  s.summary          = 'PushPushGo Core SDK'
+  s.summary          = 'CORE by PushPushGo SDK'
   s.description      = <<-DESC
-  PushPushGo Core SDK for Flutter (Dart)
+  CORE by PushPushGo SDK for Flutter (Dart)
   Supports iOS and Android (Firebase/HMS)
                        DESC
   s.homepage         = 'https://github.com/ppgco/ppg-core-flutter-sdk'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'PushPushGo Core Developers' => 'mateusz@pushpushgo.com' }
+  s.author           = { 'CORE by PushPushGo Developers' => 'support@pushpushgo.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
